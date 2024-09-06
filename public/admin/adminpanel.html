@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="adminpanel.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#manageUsers">Manage Users</a></li>
+            <li><a href="#manageRoles">Manage Roles</a></li>
+            <li><a href="#settings">Settings</a></li>
+            <li><a href="#logout">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="section active">
+            <h1>Dashboard</h1>
+
+            <!-- Dashboard Cards -->
+            <div class="dashboard-cards">
+                <div class="card">
+                    <h3>Total Users</h3>
+                    <p>1,234</p>
+                </div>
+                <div class="card">
+                    <h3>Active Users</h3>
+                    <p>567</p>
+                </div>
+                <div class="card">
+                    <h3>New Users Today</h3>
+                    <p>25</p>
+                </div>
+                <div class="card">
+                    <h3>Total Roles</h3>
+                    <p>5</p>
+                </div>
+            </div>
+
+            <!-- Recent Activity Section -->
+            <div class="recent-activity">
+                <h2>Recent Activity</h2>
+                <ul>
+                    <li>User <strong>johndoe</strong> was added to the system.</li>
+                    <li>User <strong>janedoe</strong> updated their profile.</li>
+                    <li>New role <strong>Moderator</strong> was created.</li>
+                    <li>User <strong>admin</strong> deleted a user <strong>olduser</strong>.</li>
+                </ul>
+            </div>
+
+            <!-- System Alerts Section -->
+            <div class="system-alerts">
+                <h2>System Alerts</h2>
+                <ul>
+                    <li><strong>Warning:</strong> System storage is nearing capacity.</li>
+                    <li><strong>Notice:</strong> Scheduled maintenance at 2 AM.</li>
+                    <li><strong>Alert:</strong> Unauthorized login attempt detected.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Manage Users Section -->
+        <div id="manageUsers" class="section">
+            <h1>Manage Users</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- User data will be populated here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Manage Roles Section -->
+        <div id="manageRoles" class="section">
+            <h1>Manage Roles</h1>
+            <form id="roleForm">
+                <label for="roleName">Role Name:</label>
+                <input type="text" id="roleName" name="roleName" required>
+                <button type="submit">Add Role</button>
+            </form>
+            <ul id="rolesList">
+                <!-- List of roles will be populated here -->
+            </ul>
+        </div>
+
+        <!-- Settings Section -->
+        <div id="settings" class="section">
+            <h1>Settings</h1>
+            <p>Admin settings will be available here.</p>
+        </div>
+    </div>
+
+    <script src="adminpanel.js"></script>
+</body>
+</html>

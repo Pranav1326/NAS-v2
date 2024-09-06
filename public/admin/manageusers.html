@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="manageusers.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#manageUsers">Manage Users</a></li>
+            <!-- Add more navigation links as needed -->
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="content-section">
+            <h1>Dashboard</h1>
+            <div class="dashboard-stats">
+                <div class="stat-box">
+                    <h3>Total Users</h3>
+                    <p id="totalUsers">50</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Active Users</h3>
+                    <p id="activeUsers">45</p>
+                </div>
+                <!-- Add more stat boxes as needed -->
+            </div>
+        </section>
+
+        <!-- Manage Users Section -->
+        <section id="manageUsers" class="content-section">
+            <h1>Manage Users</h1>
+            <button id="addUserBtn">Add New User</button>
+            <ul id="userList">
+                <!-- User items will be populated here -->
+            </ul>
+        </section>
+
+        <!-- User Profile Modal -->
+        <div id="userProfileModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>User Profile</h2>
+                <div id="userProfileDetails">
+                    <!-- User profile details will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock user data (replace with actual data fetching)
+        const users = [
+            { id: 1, name: 'John Doe', email: 'john@example.com' },
+            { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
+            { id: 3, name: 'Michael Johnson', email: 'michael@example.com' },
+            // Add more users as needed
+        ];
+
+        // Function to populate user list
+        function populateUserList() {
+            const userList = document.getElementById('userList');
+            userList.innerHTML = ''; // Clear existing list
+
+            users.forEach(user => {
+                const li = document.createElement('li');
+                li.textContent = `${user.name} (${user.email})`;
+                li.classList.add('user-item');
+                li.addEventListener('click', () => showUserProfile(user));
+                userList.appendChild(li);
+            });
+        }
+
+        // Function to show user profile in modal
+        function showUserProfile(user) {
+            const modal = document.getElementById('userProfileModal');
+            const profileDetails = document.getElementById('userProfileDetails');
+            profileDetails.innerHTML = `
+                <p>Name: ${user.name}</p>
+                <p>Email: ${user.email}</p>
+            `;
+            modal.style.display = 'block';
+        }
+
+        // Close modal on click
+        document.querySelector('.close-btn').onclick = function() {
+            document.getElementById('userProfileModal').style.display = 'none';
+        };
+
+        // Initialize user list on page load
+        window.onload = populateUserList;
+
+        // Handle adding a new user (basic example, extend as needed)
+        document.getElementById('addUserBtn').addEventListener('click', function() {
+            const newName = prompt('Enter new user name:');
+            const newEmail = prompt('Enter new user email:');
+            if (newName && newEmail) {
+                users.push({ id: users.length + 1, name: newName, email: newEmail });
+                populateUserList();
+            }
+        });
+    </script>
+</body>
+</html>
