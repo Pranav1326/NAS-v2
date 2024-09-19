@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Roles</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="admin-panel">
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="manage_users.html">Manage Users</a>
+        <a href="manage_roles.html">Manage Roles</a>
+        <a href="change_password.html">Change Password</a>
+        <a href="file_manager.html" class="file-access-btn">File Access Storage</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <div class="content">
+        <header>Manage Roles</header>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>User Name</th>
+                <th>Role</th>
+                <th>Permissions</th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>John Doe</td>
+                <td>Admin</td>
+                <td>Full Access</td>
+                <td>
+                    <button>Change Password</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jane Smith</td>
+                <td>User</td>
+                <td>Read, Write</td>
+                <td>
+                    <button>Change Password</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Michael Brown</td>
+                <td>Viewer</td>
+                <td>Read-Only</td>
+                <td>
+                    <button>Change Password</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
