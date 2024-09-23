@@ -9,7 +9,8 @@ const { join } = require('path');
 const formidable = require('formidable');
 const app = express();
 const PORT = 3000;
-const storageDir = '/Users/pranav/storage';
+const storageDir = 'D:\MIT ONLINE DATA\SEM 3\Mini Project';
+
 // const storageDir = '/Volumes';
 
 // Serve static files from the public directory
@@ -55,11 +56,11 @@ const adminRoutes = require('./routes/admin.routes');
 app.use('/admin', adminRoutes);
 
 // Storage Capacity and Usage Endpoint
-app.get('/storage-details', async (req, res) => {
-  checkDiskSpace('/Volumes').then((diskSpace) => {
-    res.json(diskSpace);
-  });
-});
+// app.get('/storage-details', async (req, res) => {
+//   checkDiskSpace('/Volumes').then((diskSpace) => {
+//     res.json(diskSpace);
+//   });
+// });
 
 // File Upload
 app.post('/upload', (req, res) => {

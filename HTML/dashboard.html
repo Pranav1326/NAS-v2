@@ -33,6 +33,14 @@
         </div>
     </div>
 </div>
-
+<script defer>
+    const fetchDashboardData = async () => {
+        const data = fetch('/admin/dashboard')
+        .then(res => res.json())
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    }
+    fetchDashboardData();
+</script>
 </body>
 </html>
