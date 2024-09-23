@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+  const userLoggedIn = sessionStorage.getItem('nas-token');
+  
   const uploadForm = document.getElementById('uploadForm');
   const folderUploadForm = document.getElementById('folderUploadForm');
   const createFolderForm = document.getElementById('createFolderForm');
@@ -340,5 +343,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return `${size.toFixed(2)} ${units[unitIndex]}`;
   }
 
-  loadFiles();
+  if(userLoggedIn){
+    loadFiles();
+  }
+  else{
+    window.location.href = 'login.html';
+  }
 });

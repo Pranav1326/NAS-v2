@@ -18,6 +18,18 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
         body: JSON.stringify({ username: email, password: password })
     })
     .then(res => res.json())
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+    .then(res => {
+        console.log(res);
+        if(res.success){
+            alert('Login Success');
+            sessionStorage.setItem('nas-token', res.token);
+            sessionStorage.setItem('nas-role', res.role);
+            if(res.role === 'admin') window.location.href = '/admin/dashboard.html';
+            else window.location.href = '/';
+        }
+        else{
+            alert(res.message);
+        }
+    })
+    .catch(err => alert(err.message));
 });
