@@ -43,7 +43,6 @@ exports.login = async (req, res, next) => {
         const user = await User.find({
             $or: [{ email: username }, { username }]
         });
-
         if (!user) {
             return res.status(400).json({ message: 'Invalid credentials.' });
         }
