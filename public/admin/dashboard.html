@@ -15,7 +15,7 @@
         <a href="manage_users.html">Manage Users</a>
         <a href="manage_roles.html">Manage Roles</a>
         <a href="change_password.html">Change Password</a>
-        <a href="file_manager.html" class="file-access-btn">File Access Storage</a>
+        <a href="/" class="file-access-btn">File Access Storage</a>
         <a href="#">Logout</a>
     </div>
 
@@ -24,20 +24,25 @@
         <div class="dashboard">
             <div class="card">
                 <h3>Total Users</h3>
-                <p>120</p>
+                <p id="user-count">0</p>
             </div>
             <div class="card">
                 <h3>Total Roles</h3>
-                <p>5</p>
+                <p id="role-count">0</p>
             </div>
         </div>
     </div>
 </div>
 <script defer>
+    const users = document.getElementById('user-count');
+    const roles = document.getElementById('role-count');
     const fetchDashboardData = async () => {
         const data = fetch('/admin/dashboard')
         .then(res => res.json())
-        .then(res => console.log(res))
+        .then(res => {
+            users.innerText = res.userCount;
+            roles.innerText = res.roleCount;
+        })
         .catch(err => console.log(err));
     }
     fetchDashboardData();

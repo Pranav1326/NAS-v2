@@ -1,5 +1,7 @@
 const express = require('express');
 const multer = require('multer');
+const morgan = require('morgan');
+const createError = require('http-errors');
 const checkDiskSpace = require('check-disk-space').default;
 const os = require('os');
 const fs = require('fs');
@@ -14,6 +16,7 @@ const storageDir = '/Users/pranav/storage';
 
 // Serve static files from the public directory
 app.use(express.static('public'));
+app.use(morgan("combined"));
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -116,11 +119,11 @@ app.get('/files/:filename', (req, res) => {
 // Download File or Folder
 app.get('/files/download/:filename', (req, res) => {
   const filePath = path.join(storageDir, req.params.filename);
-  
+
   if (fs.lstatSync(filePath).isDirectory()) {
     const archiveName = `${req.params.filename}.zip`;
     const archivePath = path.join(storageDir, archiveName);
-    
+
     const output = fs.createWriteStream(archivePath);
     const archive = require('archiver')('zip');
 
@@ -154,16 +157,16 @@ app.get('/files/download/:filename', (req, res) => {
 // Get size of the directory recursively
 const dirSize = async dir => {
   const files = await readdir(dir, { withFileTypes: true });
-  const paths = files.map( async file => {
+  const paths = files.map(async file => {
     const path = join(dir, file.name);
     if (file.isDirectory()) return await dirSize(path);
     if (file.isFile()) {
-      const { size } = await stat(path); 
+      const { size } = await stat(path);
       return size;
     }
     return 0;
   });
-  return(await Promise.all(paths)).flat(Infinity).reduce((i, size) => i + size, 0);
+  return (await Promise.all(paths)).flat(Infinity).reduce((i, size) => i + size, 0);
 }
 
 // Get Details of File or Folder
@@ -237,6 +240,21 @@ app.delete('/files/:path', (req, res) => {
     }
 
     res.send('File deleted successfully');
+  });
+});
+
+// Default Error Thorw
+app.use(async (req, res, next) => {
+  next(createError.NotFound());
+});
+
+app.use((err, req, res, next) => {
+  res.status = err.status || 500;
+  res.json({
+    error: {
+      status: err.status || 500,
+      message: err.message
+    }
   });
 });
 

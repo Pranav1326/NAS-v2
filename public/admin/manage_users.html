@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="admin-panel">
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="manage_users.html">Manage Users</a>
+        <a href="manage_roles.html">Manage Roles</a>
+        <a href="change_password.html">Change Password</a>
+        <a href="file_manager.html" class="file-access-btn">File Access Storage</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <header>Manage Users</header>
+            <button class="create-btn">Create User</button>
+        </div>
+        <table id="user-table">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </table>
+    </div>
+</div>
+<script defer>
+    const table = document.getElementById('user-table');
+    const fetchDashboardData = async () => {
+        const data = fetch('/admin/usersAll')
+        .then(res => res.json())
+        .then(res => {
+            if(res.success){
+                res.users.forEach(user => {
+                    const row = `
+                        <tr>
+                            <td>${user._id}</td>
+                            <td>${user.username}</td>
+                            <td class='td-email'>${user.email}</td>
+                            <td>${user.role}</td>
+                            <td>
+                                <button onclick="viewUser('${user._id}')">View</button>
+                                <button onclick="editUser('${user._id}')">Edit</button>
+                                <button onclick="deleteUser('${user._id}')">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+                    table.insertAdjacentHTML('beforeend', row);
+                });
+            }
+        })
+        .catch(err => console.log(err));
+    }
+    fetchDashboardData();
+</script>
+</body>
+</html>
