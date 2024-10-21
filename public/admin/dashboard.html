@@ -16,7 +16,7 @@
         <a href="manage_roles.html">Manage Roles</a>
         <a href="change_password.html">Change Password</a>
         <a href="/" class="file-access-btn">File Access Storage</a>
-        <a href="#">Logout</a>
+        <a href="#" id="logout">Logout</a>
     </div>
 
     <div class="content">
@@ -34,6 +34,7 @@
     </div>
 </div>
 <script defer>
+    const userLoggedIn = sessionStorage.getItem('nas-token');
     const users = document.getElementById('user-count');
     const roles = document.getElementById('role-count');
     const fetchDashboardData = async () => {
@@ -46,6 +47,15 @@
         .catch(err => console.log(err));
     }
     fetchDashboardData();
+
+    const logout = () => {
+        const sessionStorage = window.sessionStorage.clear();
+        location.replace('/');
+    }
+    document.querySelector('#logout').addEventListener('click', logout);
+
+    if(!userLoggedIn) window.location.href = '/login.html';
+
 </script>
 </body>
 </html>

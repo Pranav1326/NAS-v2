@@ -1,7 +1,7 @@
 body {
   user-select: none;
   font-family: Arial, sans-serif;
-  margin: 20px;
+  margin: 0 1.5rem;
 }
 h1 {
   color: #333;
@@ -30,6 +30,7 @@ li {
 }
 li>span{
   overflow: scroll;
+  margin: 0.5rem;
 }
 .preview{
   width: 10rem;
@@ -134,4 +135,31 @@ button {
 .full{
   background-color: #000;
   height: 6px;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header h1{
+  color: #2980b9;
+}
+
+#dashboard-btn{
+  padding: 8px 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: background-color 0.3s ease;
+  font-size: 1.1rem;
+}
+
+#dashboard-btn:hover {
+  background-color: #2980b9;
 }

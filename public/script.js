@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const userLoggedIn = sessionStorage.getItem('nas-token');
+  const userRole = sessionStorage.getItem('nas-role');
   
   const uploadForm = document.getElementById('uploadForm');
   const folderUploadForm = document.getElementById('folderUploadForm');
@@ -14,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const detailsPanel = document.getElementById('detailsPanel');
   const storagePanel = document.createElement('div');
 
+  const dashboardBtn = document.getElementById('dashboard-btn');
+  
   let currentPath = '/';
   let selectedElement = null;
   
@@ -110,6 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
     loadFiles();
   });
 
+  dashboardBtn.addEventListener('click', () => {
+    if(userRole === 'admin') window.location.href = '/admin/dashboard.html';
+  })
+  
   function loadFiles() {
     fetch(`/files?path=${encodeURIComponent(currentPath)}`)
       .then(response => response.json())

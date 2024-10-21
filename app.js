@@ -11,9 +11,9 @@ const { join } = require('path');
 const formidable = require('formidable');
 const app = express();
 const PORT = 3000;
-const storageDir = 'D:\MIT ONLINE DATA\SEM 3\Mini Project';
+// const storageDir = 'D:\MIT ONLINE DATA\SEM 3\Mini Project';
 
-// const storageDir = '/Volumes';
+const storageDir = '/Users/pranav/storage';
 
 // Serve static files from the public directory
 app.use(express.static('public'));
